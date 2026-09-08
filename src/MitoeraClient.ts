@@ -46,12 +46,10 @@ export class MitoeraClient {
       );
     }
 
-    const isSandbox =
-      options.mode !== undefined
-        ? options.mode === 'sandbox'
-        : options.keyId.startsWith('pk_test_');
-
-    this.apiPrefix  = isSandbox ? '/sandbox-api' : '/api';
+    // The API always lives under /api — sandbox vs. production is an
+    // instance-level setting on the server, NOT a different URL prefix.
+    // A pk_test_ key hits the same /api/... routes as a pk_live_ key.
+    this.apiPrefix  = '/api';
     this.credential = `${options.keyId}:${options.secret}`;
     this.http       = http ?? new HttpClient(
       options.baseUrl ?? 'https://api.mitoera.com',
