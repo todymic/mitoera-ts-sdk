@@ -50,7 +50,7 @@ export class MitoeraClient {
     // instance-level setting on the server, NOT a different URL prefix.
     // A pk_test_ key hits the same /api/... routes as a pk_live_ key.
     this.apiPrefix  = '/api';
-    this.credential = `${options.keyId}:${options.secret}`;
+    this.credential = Buffer.from(`${options.keyId}:${options.secret}`).toString('base64');
     this.http       = http ?? new HttpClient(
       options.baseUrl ?? 'https://api.mitoera.com',
       options.timeoutMs ?? 30_000,
@@ -93,6 +93,6 @@ export class MitoeraClient {
   }
 
   private authHeaders(): Record<string, string> {
-    return { Authorization: `ApiKey ${this.credential}` };
+    return { Authorization: `Basic ${this.credential}` };
   }
 }

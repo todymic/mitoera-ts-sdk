@@ -16,7 +16,7 @@ function makeHttp() {
 describe('MitoeraClient', () => {
   it('auto-detects sandbox from pk_test_ prefix', () => {
     const client = new MitoeraClient({ keyId: 'pk_test_abc', secret: 'sk_xxx' });
-    expect(client.apiPrefix).toBe('/sandbox-api');
+    expect(client.apiPrefix).toBe('/api');
   });
 
   it('auto-detects production from pk_live_ prefix', () => {
@@ -26,7 +26,7 @@ describe('MitoeraClient', () => {
 
   it('explicit mode overrides key prefix', () => {
     const client = new MitoeraClient({ keyId: 'pk_live_abc', secret: 'sk_xxx', mode: 'sandbox' });
-    expect(client.apiPrefix).toBe('/sandbox-api');
+    expect(client.apiPrefix).toBe('/api');
   });
 
   it('throws AuthException when keyId is missing', () => {

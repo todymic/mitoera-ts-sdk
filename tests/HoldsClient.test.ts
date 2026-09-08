@@ -74,7 +74,7 @@ describe('HoldsClient', () => {
 
     await holds.hold('event-1', ['A1'], 'ht-1');
     expect(http.post).toHaveBeenCalledWith(
-      '/sandbox-api/events/event-1/hold',
+      '/api/events/event-1/hold',
       expect.any(Object),
       expect.any(Object),
     );
