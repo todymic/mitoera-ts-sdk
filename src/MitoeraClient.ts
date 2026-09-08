@@ -7,6 +7,7 @@ import { ChartsClient } from './client/ChartsClient.js';
 import { CategoriesClient } from './client/CategoriesClient.js';
 import { WorkspacesClient } from './client/WorkspacesClient.js';
 import { ApiKeysClient } from './client/ApiKeysClient.js';
+import { ReportingClient } from './client/ReportingClient.js';
 
 export interface MitoeraClientOptions {
   keyId: string;
@@ -32,6 +33,7 @@ export class MitoeraClient {
   readonly categories: CategoriesClient;
   readonly workspaces: WorkspacesClient;
   readonly apiKeys: ApiKeysClient;
+  readonly reporting: ReportingClient;
 
   /** @internal — used by sub-clients to prefix every request path. */
   readonly apiPrefix: string;
@@ -63,6 +65,7 @@ export class MitoeraClient {
     this.categories = new CategoriesClient(this);
     this.workspaces = new WorkspacesClient(this);
     this.apiKeys    = new ApiKeysClient(this);
+    this.reporting  = new ReportingClient(this);
   }
 
   // ── HTTP verbs — used internally by sub-clients ──────────────────────────
