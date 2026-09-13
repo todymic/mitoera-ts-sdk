@@ -4,6 +4,22 @@
   "description": "Official Mitoera SDK for Node.js and the browser",
   "author": "Mitoera",
   "license": "MIT",
+  "homepage": "https://github.com/todymic/mitoera-ts-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/todymic/mitoera-ts-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/todymic/mitoera-ts-sdk/issues"
+  },
+  "keywords": [
+    "mitoera",
+    "seating",
+    "ticketing",
+    "seatmap",
+    "sdk",
+    "api-client"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -17,13 +33,22 @@
     "./browser": {
       "types": "./dist/browser.d.ts",
       "import": "./dist/browser.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "files": ["dist"],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc --project tsconfig.build.json && node scripts/build-cjs.mjs",
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run lint && npm test && npm run build"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
